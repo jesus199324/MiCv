@@ -1,0 +1,105 @@
+const D={
+perfil:{nombre:"Alfredo Jesús Albornoz",rol:"Desarrollador de Software Backend",ubicacion:"Montevideo, Uruguay",experiencia_it_anios:10,ingles:"técnico",estado:"Disponible para su primera oportunidad como desarrollador"},
+skills:{backend:["Java","Spring Boot","Node.js","Python","Hibernate","MySQL","PostgreSQL","MongoDB"],frontend:["JavaScript","React","HTML","CSS","Tailwind"],devops:["Docker","AWS","Terraform","Jenkins"],sistemas:["Windows","Linux","macOS","Shell scripting","SSH"]},
+experiencia:[{empresa:"CompoSystem",puesto:"Técnico 1A · Digitador · Chofer",desde:2026,hasta:"actualidad"},{empresa:"La Oferta Irresistible",puesto:"Encargado de Servicio PostVenta",desde:2020,hasta:2026},{empresa:"La Oferta Irresistible",puesto:"Técnico de TI",desde:2016,hasta:2020},{empresa:"C.C.O.P.E. · Ejército",puesto:"Operaciones",desde:2012,hasta:2016}],
+proyectos:[{nombre:"Sistema de Turnos",demo:"sistemadeturno.netlify.app"},{nombre:"CV Interactivo",stack:["React"]},{nombre:"Pokédex API",stack:["JavaScript","REST"]}],
+contacto:{email:"alfredojesus.albornoz@gmail.com",whatsapp:"+598 99 119 628",linkedin:"alfredojalbornoz",github:"JesusAlbornoz29"}};
+const ADR=[
+["ADR-001","Pasar de soporte IT a desarrollo de software","Aceptada","Después de 10 años en soporte y liderazgo técnico, resolvía a mano problemas que el software podía evitar.","Formarme como desarrollador en UTEC y Digital House (2022).","Entiendo la operación y al usuario desde adentro. Tengo que demostrar mi nivel con proyectos reales."],
+["ADR-002","Especializarme en backend con Java y Spring Boot","Aceptada","Ya tenía una base full stack con React y Node.js.","Hacer la especialización backend (2024-2025).","Trabajo con APIs REST, bases de datos y despliegue. Dedico menos tiempo al diseño visual."],
+["ADR-003","Cursar Ingeniería en Computación en la UdelaR","Pospuesto","Mi formación era muy práctica y me faltaba base teórica.","Estudiar la carrera en paralelo.","Gano fundamentos de algoritmos y estructuras de datos, a cambio de más carga de estudio."],
+["ADR-004","Usar la IA como herramienta de trabajo","Aceptada","La IA ya cambió la forma de desarrollar software.","Cursar Iniciación al Desarrollo con IA en Big School (2025).","Itero más rápido. Reviso siempre lo que genera antes de usarlo."]];
+const ad=document.getElementById("adrs");
+ADR.forEach(([i,t,s,c,d,k])=>{const e=document.createElement("details");e.className="adr";e.innerHTML=`<summary><span class="id">${i}</span>${t}<span class="st">${s}</span></summary><dl><dt>Contexto</dt><dd>${c}</dd><dt>Decisión</dt><dd>${d}</dd><dt>Consecuencias</dt><dd>${k}</dd></dl>`;ad.appendChild(e)});
+D.decisiones=ADR.map(a=>({id:a[0],titulo:a[1],estado:a[2]}));
+// ---- Formación y diplomas ----
+// Para mostrar un diploma: copiá el archivo (PDF o imagen) en assets/diplomas/ y completá "file"
+// con su ruta, por ejemplo: file:"assets/diplomas/digital-house-backend.pdf". Si "file" es null no se muestra el enlace.
+const FORM=[
+{feat:1,t:"Desarrollador de Software · Énfasis Backend",org:"Digital House",when:"2022 - 2025",file:null,
+ desc:"Formación en desarrollo de software con foco en backend, bases de datos, infraestructura y testing, complementada con habilidades de comunicación y trabajo en equipo.",
+ tags:["Backend I, II y III","Bases de Datos I y II","Infraestructura I, II y III","Testing I y II","Programación orientada a objetos","Proyectos integradores I y II"],
+ areas:{"Fundamentos":["Introducción a la informática","Programación imperativa","Programación orientada a objetos"],"Frontend y diseño":["Diseño UX/UI","Maquetado web y desarrollo frontend con JavaScript y frameworks"],"Backend":["Backend I, II y III"],"Datos e infraestructura":["Bases de Datos I y II","Infraestructura I, II y III"],"Calidad":["Testing I y II"],"Producto y proyectos":["Gestión de producto digital","Proyectos integradores I y II"],"Habilidades profesionales":["Comunicación efectiva","Trabajo en equipo y colaboración","Agilidad de aprendizaje","Resolución de problemas y gestión de proyectos","Posicionamiento profesional"]}},
+{t:"Iniciación al Desarrollo con IA",org:"Big School",when:"2025",file:null,desc:"Integración de modelos de IA en el flujo de trabajo de desarrollo."},
+{t:"Ingeniería en Computación",org:"UdelaR",when:"Pospuesto",file:null,desc:"Algoritmos, estructuras de datos y desarrollo de software avanzado."},
+{t:"Bachiller Tecnológico en Informática",org:"Educación media tecnológica",when:"2016 – 2020",file:null,desc:"Base técnica en redes, hardware y lógica de programación, con fundamentos de Java y de sistemas operativos."}];
+FORM.forEach(f=>{const a=document.createElement("article");a.className="ecard"+(f.feat?" feat":"");
+let h=`<span class="yr">${f.when}</span><h3>${f.t}</h3><p class="org">${f.org}</p><p class="d">${f.desc}</p>`;
+if(f.tags)h+=`<div class="tg">${f.tags.map(x=>`<span>${x}</span>`).join("")}</div>`;
+if(f.areas)h+=`<details><summary>Ver contenidos por área</summary><div class="areas">${Object.entries(f.areas).map(([k,v])=>`<div><h4>${k}</h4><ul>${v.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")}</div></details>`;
+if(f.file)h+=`<a class="dlk" href="${f.file}" target="_blank" rel="noopener">Ver diploma →</a>`;
+a.innerHTML=h;document.getElementById("edu").appendChild(a)});
+D.formacion=FORM.map(f=>({titulo:f.t,institucion:f.org,periodo:f.when}));
+const EP=["perfil","skills","experiencia","formacion","proyectos","decisiones","contacto"];
+const eps=document.getElementById("eps"),out=document.getElementById("out"),reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+let timer;
+function hl(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/("[^"]*")(\s*:)?|\b(\d+)\b/g,(m,s,c,n)=>n?`<span class="n">${n}</span>`:c?`<span class="k">${s}</span>${c}`:`<span class="s">${s}</span>`)}
+function show(name){
+  clearInterval(timer);
+  [...eps.children].forEach(b=>b.setAttribute("aria-selected",b.dataset.n===name));
+  const txt=JSON.stringify(D[name],null,2),ms=Math.floor(8+Math.random()*30);
+  document.getElementById("req").textContent="GET /"+name;
+  document.getElementById("ms").textContent=ms+" ms";
+  if(reduce){out.innerHTML=hl(txt);return}
+  let i=0;out.textContent="";
+  timer=setInterval(()=>{i+=6;out.innerHTML=hl(txt.slice(0,i));if(i>=txt.length)clearInterval(timer)},12);
+}
+EP.forEach(n=>{const b=document.createElement("button");b.className="ep";b.type="button";b.dataset.n=n;b.setAttribute("role","tab");b.innerHTML=`<b>GET</b> /${n}`;b.onclick=()=>show(n);eps.appendChild(b)});
+show("perfil");
+
+const S={Backend:["Java","Spring Boot","Node.js","Python","Maven","Hibernate","MySQL","PostgreSQL","MongoDB"],Frontend:["JavaScript","TypeScript","React","HTML","CSS","Sass","Bootstrap","Tailwind CSS"],"DevOps":["Docker","AWS","Terraform","Ansible","Jenkins","Git"],Sistemas:["Windows","Linux","macOS","Shell scripting","SSH"],Testing:["JUnit","Postman","Debugging"]};
+const chips=document.getElementById("chips"),pills=document.getElementById("pills");
+Object.entries(S).forEach(([g,l])=>l.forEach(s=>{const p=document.createElement("span");p.className="pill";p.dataset.g=g;p.innerHTML='<i class="ic" style="--h:'+hue(s)+';animation-delay:'+(Math.random()*2).toFixed(2)+'s">'+ab(s)+'</i>'+s;pills.appendChild(p)}));
+["Todo",...Object.keys(S)].forEach((g,i)=>{const c=document.createElement("button");c.className="chip";c.type="button";c.textContent=g;c.setAttribute("aria-pressed",i===0);c.onclick=()=>{[...chips.children].forEach(x=>x.setAttribute("aria-pressed",x===c));[...pills.children].forEach(p=>p.classList.toggle("off",g!=="Todo"&&p.dataset.g!==g))};chips.appendChild(c)});
+
+function tl(id,items){const ul=document.getElementById(id);items.forEach(([y,t,d],i)=>{const li=document.createElement("li");li.innerHTML=`<details${i===0?' open':''}><summary><span class="yr">${y}</span>${t}</summary><p class="d">${d}</p></details>`;ul.appendChild(li)})}
+tl("exp",[
+["2026 – actualidad","Técnico 1A · Digitador · Chofer · CompoSystem"," Soporte técnico y mantenimiento de impresoras empresariales y equipos informáticos para organismos públicos."],
+["2020 – 2026","Encargado de Servicio PostVenta · La Oferta Irresistible (LOi)","Lideré el área de servicio técnico: organicé al equipo, resolví casos complejos y mejoré los procesos de atención."],
+["2016 – 2020","Técnico de TI · La Oferta Irresistible (LOi)","Soporte técnico, mantenimiento de equipos y resolución de incidentes para toda la empresa."],
+["2012 – 2016","Centro Coordinador de Operaciones de Paz · Ejército","Trabajo en el Comando General del Ejército, en un entorno de disciplina y responsabilidad."],
+["2011 – 2012","Técnico en Gestión y Soporte IT · Net Pc","Mi primer trabajo: soporte y gestión de sistemas para clientes."]]);
+
+const W=["Desarrollador Backend","de Java y Spring Boot","líder en soporte IT","estudiante de Ingeniería","un solucionador de problemas","alguien que aprende rápido"],rot=document.getElementById("rot");
+let wi=0,ci=0,del=false;
+function tick(){const w=W[wi];if(reduce){rot.textContent=W[wi=(wi+1)%W.length];return setTimeout(tick,2600)}
+ci+=del?-1:1;rot.textContent=w.slice(0,ci);let t=del?35:70;if(!del&&ci===w.length){del=true;t=1600}else if(del&&ci===0){del=false;wi=(wi+1)%W.length;t=300}setTimeout(tick,t)}
+rot.textContent="";tick();
+const root=document.documentElement,tb=document.getElementById("theme");
+function flip(){root.dataset.theme=root.dataset.theme==="light"?"dark":"light"}
+tb.onclick=flip;
+function hue(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))%360;return h}
+function ab(s){return({JavaScript:'JS',TypeScript:'TS',PostgreSQL:'Pg',MongoDB:'Mg',AWS:'AWS','Spring Boot':'Sb','Node.js':'No','Tailwind CSS':'Tw',Windows:'Win',macOS:'mac','Shell scripting':'Sh',SSH:'SSH'})[s]||s.slice(0,2)}
+
+const cv=document.createElement('canvas');cv.id='net';document.body.prepend(cv);const cx=cv.getContext('2d');
+let CW,CH,N=[],mx=-999,my=-999;
+function size(){CW=cv.width=innerWidth;CH=cv.height=innerHeight;N=Array.from({length:Math.min(80,Math.floor(CW*CH/18000))},()=>({x:Math.random()*CW,y:Math.random()*CH,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+addEventListener('resize',()=>{size();if(reduce)draw()});addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});size();
+function draw(){const s=getComputedStyle(root),a=s.getPropertyValue('--acc').trim(),b=s.getPropertyValue('--acc2').trim(),off=scrollY*.15;cx.clearRect(0,0,CW,CH);
+N.forEach(n=>{if(!reduce){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>CW)n.vx*=-1;if(n.y<0||n.y>CH)n.vy*=-1}});
+for(let i=0;i<N.length;i++){const p=N[i],py=((p.y-off)%CH+CH)%CH;cx.fillStyle=a;cx.globalAlpha=.7;cx.beginPath();cx.arc(p.x,py,1.8,0,7);cx.fill();
+for(let j=i+1;j<N.length;j++){const q=N[j],qy=((q.y-off)%CH+CH)%CH,d=Math.hypot(p.x-q.x,py-qy);if(d<140){cx.globalAlpha=(1-d/140)*.35;cx.strokeStyle=a;cx.beginPath();cx.moveTo(p.x,py);cx.lineTo(q.x,qy);cx.stroke()}}
+const dm=Math.hypot(p.x-mx,py-my);if(dm<180){cx.globalAlpha=(1-dm/180)*.7;cx.strokeStyle=b;cx.beginPath();cx.moveTo(p.x,py);cx.lineTo(mx,my);cx.stroke()}}
+if(!reduce)requestAnimationFrame(draw)}
+draw();
+
+const pg=document.createElement('div');pg.id='prog';document.body.appendChild(pg);
+const up=document.createElement('button');up.id='up';up.type='button';up.setAttribute('aria-label','Volver arriba');up.textContent='↑';up.onclick=()=>scrollTo({top:0});document.body.appendChild(up);
+const hd=document.querySelector('header');let ly=0;
+addEventListener('scroll',()=>{const y=scrollY,m=document.documentElement.scrollHeight-innerHeight;pg.style.transform='scaleX('+(m>0?y/m:0)+')';hd.classList.toggle('hide',y>ly&&y>120);up.classList.toggle('on',y>600);ly=y},{passive:true});
+
+function count(b){b.done=1;const n=+b.dataset.n;let i=0;const t=setInterval(()=>{i++;b.textContent=Math.round(n*i/30);if(i>=30)clearInterval(t)},40)}
+if(reduce)document.querySelectorAll('b[data-n]').forEach(b=>b.textContent=b.dataset.n);
+const io=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target;if(e.isIntersecting){t.classList.add('in');const b=t.querySelector('b[data-n]');if(b&&!b.done)count(b)}else{t.classList.toggle('top',e.boundingClientRect.top<0);t.classList.remove('in')}}),{threshold:.12});
+if(!reduce)document.querySelectorAll('h2,.sub,.card,.proj,.adr,.tl li,.ecard,.contact a,.en,.stats>div').forEach(el=>{el.classList.add('rv');io.observe(el)});
+const links=[...document.querySelectorAll('nav a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('act',a.hash==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
+
+const pj=document.querySelectorAll('.proj');
+{const el=document.createElement('div');el.className='pv';el.innerHTML='<b class="big">Sin turnos</b><small>Cola vacía</small><div class="row"><button type="button" class="n">Pedir turno</button><button type="button" class="c">Llamar siguiente</button></div>';pj[0].prepend(el);
+let n=0,q=[];const v=el.querySelector('.big'),ql=el.querySelector('small'),r=()=>ql.textContent=q.length?'En espera: '+q.join(', '):'Cola vacía';
+el.querySelector('.n').onclick=()=>{n++;const t='A-'+String(n).padStart(3,'0');q.push(t);v.textContent='Tu turno: '+t;r()};
+el.querySelector('.c').onclick=()=>{if(q.length){v.textContent='Llamando a '+q.shift();v.classList.remove('pulse');void v.offsetWidth;v.classList.add('pulse')}else v.textContent='Sin turnos';r()}}
+{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="mk"><i></i><div><u></u><u class="s"></u></div></div><u></u><u class="s"></u><div class="row"><button type="button">Probar tema claro u oscuro</button></div>';el.querySelector('button').onclick=()=>el.classList.toggle('lt');pj[1].prepend(el)}
+{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="pk"></div><small>Tocá una carta</small>';const g=el.querySelector('.pk');[['Pikachu','Eléctrico',48],['Charmander','Fuego',15],['Bulbasaur','Planta',140],['Squirtle','Agua',200]].forEach(([a,t,h])=>{const b=document.createElement('button');b.type='button';b.textContent=a;b.style.setProperty('--h',h);b.onclick=()=>{b.classList.toggle('f');b.textContent=b.classList.contains('f')?t:a};g.appendChild(b)});pj[2].prepend(el)}

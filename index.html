@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alfredo Albornoz · Desarrollador Backend</title>
+<meta name="description" content="CV interactivo de Alfredo Jesús Albornoz: 10 años en soporte tecnológico, Certified Tech Developer con especialización Backend.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#top">Alfredo Albornoz</a>
+<nav><a href="#aporte">Por qué yo</a><a href="#proyectos">Proyectos</a><a href="#skills">Skills</a><a href="#trayectoria">Experiencia</a><a href="#formacion">Formación</a><a href="#decisiones">Decisiones</a><a href="#contacto">Contacto</a></nav>
+<button id="theme" type="button" aria-label="Cambiar tema">Tema</button>
+</div></header>
+<main id="top">
+<section class="hero" style="padding-top:56px">
+<div>
+<div class="av"><div class="face" aria-hidden="true">AJA</div><span>Montevideo, Uruguay<br>Disponible para nuevas oportunidades</span></div>
+<p class="role">Soy <span id="rot">Desarrollador Backend</span><span class="cur" aria-hidden="true">|</span></p>
+<h1>Alfredo Jesús Albornoz</h1>
+<p class="pitch">Diez años en soporte tecnológico resolviendo problemas reales; ahora construyo las APIs que los evitan. Aprendo rápido, leo documentación en inglés y busco mi primera experiencia como desarrollador de software.</p>
+<div class="btns"><a class="btn p" href="#contacto">Hablemos</a><a class="btn" href="cv-alfredo-albornoz.pdf" download="CV-Alfredo-Albornoz.pdf">Descargar CV en PDF</a></div>
+</div>
+<div>
+<div class="api">
+<div class="eps" role="tablist" aria-label="Endpoints del CV" id="eps"></div>
+<div class="stat"><span id="req">GET /perfil</span><span><span class="ok" id="code">200 OK</span> · <span id="ms">0 ms</span></span></div>
+<pre id="out" aria-live="polite"></pre>
+</div>
+<p class="hint">Este CV es una API. Elegí un endpoint y consultá mi información.</p>
+</div>
+</section>
+
+<section id="aporte">
+<h2>Lo que aporto</h2>
+<p class="sub">Seria mi primera experiencia laboral como desarrollador, pero no mi primera experiencia profesional en el sector tecnológico.</p>
+<div class="stats"><div><b data-n="10">0</b><span>años en soporte tecnológico</span></div><div><b data-n="3">0</b><span>formaciones en desarrollo de software</span></div><div><b data-n="3">0</b><span>proyectos publicados</span></div></div>
+<div class="grid4">
+<div class="card"><h3>Conozco al usuario real</h3><p>Cuento con mas de diez años con clientes finales  resolviendo incidentes: sé cómo se ve un error desde el otro lado y escribo código pensando en quien lo va a usar.</p></div>
+<div class="card"><h3>Aprendo rápido y con ganas</h3><p>En pocos años completé varias formaciones en desarrollo de software y sigo estudiando Ingeniería. Cuando aparece una tecnología nueva, la leo, la pruebo y la uso.</p></div>
+<div class="card"><h3>Inglés técnico</h3><p>Leo documentación oficial, issues y mensajes de error en inglés todos los días, y puedo escribir commits y documentación técnica en inglés.</p></div>
+<div class="card"><h3>Liderazgo y calma bajo presión</h3><p>Lideré un área de servicio técnico: prioricé casos, coordiné al equipo y mejoré procesos mientras la operación seguía funcionando.</p></div>
+</div>
+<div class="en"><b>In English:</b> I spent 10 years in IT support, leading a technical service team. Now I build backend software with Java and Spring Boot. I read English documentation every day, I learn new tools quickly, and I am looking for my first developer role where I can keep growing.</div>
+<h3 style="margin:34px 0 0">Mis primeros 90 días</h3>
+<div class="d90">
+<div class="card"><h3>Mes 1</h3><p>Aprender el producto, el código y la forma de trabajar del equipo.</p></div>
+<div class="card"><h3>Mes 2</h3><p>Entregar mis primeras tareas con revisión de código y aplicar el feedback.</p></div>
+<div class="card"><h3>Mes 3</h3><p>Tomar tareas propias y proponer una mejora concreta de proceso.</p></div>
+</div>
+</section>
+
+<section id="proyectos">
+<h2>Proyectos</h2>
+<p class="sub">Tres proyectos propios, con código y demo en línea.</p>
+<div class="projects">
+<article class="proj"><h3>Sistema de Turnos</h3><p>Aplicación web para pedir citas médicas: genera un número de turno único al instante y gestiona el llamado cambiando el estado de cada ticket.</p><span class="tags">Web app · Gestión de estados</span><div class="lk"><a href="https://sistemadeturno.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/SistemaDeTurnos" target="_blank" rel="noopener">Código</a></div></article>
+<article class="proj"><h3>CV Interactivo</h3><p>De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.</p><span class="tags">React · CSS</span><div class="lk"><a href="https://cvbasico.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/CV" target="_blank" rel="noopener">Código</a></div></article>
+<article class="proj"><h3>Pokédex con API</h3><p>Mi primer proyecto consumiendo una API: datos de Pokémon en pantalla, de forma dinámica.</p><span class="tags">JavaScript · REST</span><div class="lk"><a href="https://pockedexapi2025.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/PokemonApi" target="_blank" rel="noopener">Código</a></div></article>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<p class="sub">Filtrá por área para ver con qué trabajo en cada capa.</p>
+<div class="chips" id="chips" role="group" aria-label="Filtrar skills"></div>
+<div class="pills" id="pills"></div>
+</section>
+
+<section id="trayectoria">
+<h2>Experiencia</h2>
+<p class="sub">Tocá cada puesto para ver el detalle.</p>
+<ul class="tl" id="exp"></ul>
+</section>
+
+<section id="formacion">
+<h2>Formación y certificaciones</h2>
+<p class="sub">Mi base en soporte técnico, complementada con formación formal en programación.</p>
+<div class="edu" id="edu"></div>
+</section>
+
+<section id="decisiones">
+<h2>Registro de decisiones</h2>
+<p class="sub">Los equipos de ingeniería documentan sus decisiones importantes. Hice lo mismo con las de mi carrera.</p>
+<div id="adrs"></div>
+</section>
+
+<section id="contacto">
+<h2>Contacto</h2>
+<p class="sub">Escribime y te respondo pronto. Estoy en Montevideo, Uruguay.</p>
+<div class="contact">
+<a href="mailto:alfredojesus.albornoz@gmail.com?subject=Contacto%20desde%20tu%20CV">Email<small>alfredojesus.albornoz@gmail.com</small></a>
+<a href="https://wa.me/59899119628?text=Hola%20Alfredo,%20vi%20tu%20CV%20y%20quiero%20contactarte" target="_blank" rel="noopener">WhatsApp<small>+598 99 119 628</small></a>
+<a href="https://www.linkedin.com/in/alfredojalbornoz/" target="_blank" rel="noopener">LinkedIn<small>alfredojalbornoz</small></a>
+<a href="https://github.com/JesusAlbornoz29" target="_blank" rel="noopener">GitHub<small>JesusAlbornoz29</small></a>
+</div>
+</section>
+</main>
+<footer>© 2026 Alfredo Jesús Albornoz. Montevideo, Uruguay.</footer>
+</body>
+</html>
