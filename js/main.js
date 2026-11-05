@@ -95,12 +95,8 @@ const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.f
 document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
 
 const pj=document.querySelectorAll('.proj');
-{const el=document.createElement('div');el.className='pv';el.innerHTML='<b class="big">Sin turnos</b><small>Cola vacía</small><div class="row"><button type="button" class="n">Pedir turno</button><button type="button" class="c">Llamar siguiente</button></div>';pj[0].prepend(el);
-let n=0,q=[];const v=el.querySelector('.big'),ql=el.querySelector('small'),r=()=>ql.textContent=q.length?'En espera: '+q.join(', '):'Cola vacía';
-el.querySelector('.n').onclick=()=>{n++;const t='A-'+String(n).padStart(3,'0');q.push(t);v.textContent='Tu turno: '+t;r()};
-el.querySelector('.c').onclick=()=>{if(q.length){v.textContent=q.shift()+' · Puesto 1';v.classList.remove('pulse');void v.offsetWidth;v.classList.add('pulse')}else v.textContent='Sin turnos';r()}}
-{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="mk"><i></i><div><u></u><u class="s"></u></div></div><u></u><u class="s"></u><div class="row"><button type="button">Probar tema claro u oscuro</button></div>';el.querySelector('button').onclick=()=>el.classList.toggle('lt');pj[1].prepend(el)}
-{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="pk"></div><small>Tocá una carta</small>';const g=el.querySelector('.pk');[['Pikachu','Eléctrico',48],['Charmander','Fuego',15],['Bulbasaur','Planta',140],['Squirtle','Agua',200]].forEach(([a,t,h])=>{const b=document.createElement('button');b.type='button';b.textContent=a;b.style.setProperty('--h',h);b.onclick=()=>{b.classList.toggle('f');b.textContent=b.classList.contains('f')?t:a};g.appendChild(b)});pj[2].prepend(el)}
+{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="mk"><i></i><div><u></u><u class="s"></u></div></div><u></u><u class="s"></u><div class="row"><button type="button">Probar tema claro u oscuro</button></div>';el.querySelector('button').onclick=()=>el.classList.toggle('lt');pj[0].prepend(el)}
+{const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="pk"></div><small>Tocá una carta</small>';const g=el.querySelector('.pk');[['Pikachu','Eléctrico',48],['Charmander','Fuego',15],['Bulbasaur','Planta',140],['Squirtle','Agua',200]].forEach(([a,t,h])=>{const b=document.createElement('button');b.type='button';b.textContent=a;b.style.setProperty('--h',h);b.onclick=()=>{b.classList.toggle('f');b.textContent=b.classList.contains('f')?t:a};g.appendChild(b)});pj[1].prepend(el)}
 
 // ---- Simulador de disponibilidad (Barber Studio): datos de ejemplo, misma regla que el backend ----
 {const host=document.getElementById('sim');if(host){
@@ -131,5 +127,26 @@ else if(b.hasAttribute('data-go')&&sel!==null){
   if(race){ex.push({s:sel,e:sel+dur,mine:false});msg='409 Conflict: ese horario ya no está libre. Elegí otro.';cls='er';race=false}
   else{ex.push({s:sel,e:sel+dur,mine:true});msg='201 Created: reserva confirmada de '+fmt(sel)+' a '+fmt(sel+dur)+' ('+SV[svc][0]+').';cls='ok'}
   sel=null}
+draw()});
+draw()}}
+
+// ---- Simulador del turnero (Sistema de Turnos): misma lógica que la app, todo en el navegador ----
+{const host=document.getElementById('sim-turnos');if(host){
+const SEC=[['A','Atención'],['C','Caja']];
+let cnt={},q=[],tv=null,hist=[],msg='Sacá un número y llamalo desde un puesto.',cls='',flash=false;
+const take=p=>{cnt[p]=(cnt[p]||0)+1;const c=p+'-'+String(cnt[p]).padStart(3,'0');q.push(c);return c};
+function draw(){
+host.innerHTML='<p class="cap">Simulación del turnero<small>Tótem, mostrador y pantalla de sala en un solo lugar. En el sistema real son tres aparatos distintos.</small></p>'+
+'<div class="tv" aria-live="polite"><span class="lbl">Pantalla de sala</span><span class="num'+(flash?' flash':'')+'">'+(tv?tv.c:'—')+'</span><span class="desk">'+(tv?'Puesto '+tv.d:'')+'</span></div>'+
+'<div class="row" role="group" aria-label="Tótem">'+SEC.map(([p,n])=>'<button type="button" data-t="'+p+'">Sacar número · '+n+'</button>').join('')+'<button type="button" data-both>Dos a la vez</button></div>'+
+'<div class="q">'+(q.length?q.map(c=>'<span>'+c+'</span>').join(''):'<em>Nadie esperando</em>')+'</div>'+
+'<div class="row" role="group" aria-label="Mostrador"><button type="button" class="go" data-call="1" '+(q.length?'':'disabled')+'>Llamar · Puesto 1</button><button type="button" class="go" data-call="2" '+(q.length?'':'disabled')+'>Llamar · Puesto 2</button><button type="button" data-rep '+(tv?'':'disabled')+'>Repetir</button><button type="button" data-reset>Reiniciar</button></div>'+
+'<p class="st '+cls+'">'+msg+'</p>';flash=false}
+host.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
+if(b.dataset.t){const c=take(b.dataset.t),ahead=q.filter(x=>x[0]===c[0]).length-1;msg='Ticket '+c+(ahead?': hay '+ahead+' antes en ese sector.':': sos el próximo de ese sector.');cls=''}
+else if(b.hasAttribute('data-both')){const x=take('C'),y=take('C');msg='Dos pedidos en el mismo segundo: '+x+' y '+y+'. El candado evita repetir el número.';cls='ok'}
+else if(b.dataset.call){const c=q.shift();tv={c,d:b.dataset.call};hist.unshift(tv);flash=true;msg='Ding. "Turno '+c[0]+' '+parseInt(c.slice(2),10)+', puesto '+b.dataset.call+'."';cls='ok'}
+else if(b.hasAttribute('data-rep')){flash=true;msg='Se vuelve a anunciar '+tv.c+' sin duplicar el historial.';cls=''}
+else if(b.hasAttribute('data-reset')){cnt={};q=[];tv=null;hist=[];msg='Numeración reiniciada, como pasa sola cada medianoche.';cls=''}
 draw()});
 draw()}}
