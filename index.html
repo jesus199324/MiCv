@@ -2,9 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050B16">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Alfredo Albornoz · Desarrollador Backend</title>
-<meta name="description" content="CV interactivo de Alfredo Jesús Albornoz: 10 años en soporte tecnológico, Certified Tech Developer con especialización Backend.">
+<title>Alfredo Albornoz · Desarrollador Full Stack Junior</title>
+<meta name="description" content="CV interactivo de Alfredo Jesús Albornoz: 10 años en soporte tecnológico, ahora desarrollador Full Stack Junior formado en Digital House.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +18,13 @@
 <header><div class="bar">
 <a class="logo" href="#top">Alfredo Albornoz</a>
 <nav><a href="#aporte">Por qué yo</a><a href="#proyectos">Proyectos</a><a href="#skills">Skills</a><a href="#trayectoria">Experiencia</a><a href="#formacion">Formación</a><a href="#decisiones">Decisiones</a><a href="#contacto">Contacto</a></nav>
-<button id="theme" type="button" aria-label="Cambiar tema">Tema</button>
+
 </div></header>
 <main id="top">
 <section class="hero" style="padding-top:56px">
 <div>
-<div class="av"><div class="face" aria-hidden="true">AJA</div><span>Montevideo, Uruguay<br>Disponible para nuevas oportunidades</span></div>
-<p class="role">Soy <span id="rot">Desarrollador Backend</span><span class="cur" aria-hidden="true">|</span></p>
+<div class="av"><div class="face" aria-hidden="true">AJA</div><span>Montevideo, Uruguay<br>Disponible · Desarrollador Full Stack Junior</span></div>
+<p class="role">Soy <span id="rot">Desarrollador Full Stack Junior</span><span class="cur" aria-hidden="true">|</span></p>
 <h1>Alfredo Jesús Albornoz</h1>
 <p class="pitch">Diez años en soporte tecnológico resolviendo problemas reales; ahora construyo las APIs que los evitan. Aprendo rápido, leo documentación en inglés y busco mi primera experiencia como desarrollador de software.</p>
 <div class="btns"><a class="btn p" href="#contacto">Hablemos</a><a class="btn" href="cv-alfredo-albornoz.pdf" download="CV-Alfredo-Albornoz.pdf">Descargar CV en PDF</a></div>
@@ -39,10 +41,10 @@
 
 <section id="aporte">
 <h2>Lo que aporto</h2>
-<p class="sub">Seria mi primera experiencia laboral como desarrollador, pero no mi primera experiencia profesional en el sector tecnológico.</p>
-<div class="stats"><div><b data-n="10">0</b><span>años en soporte tecnológico</span></div><div><b data-n="3">0</b><span>formaciones en desarrollo de software</span></div><div><b data-n="3">0</b><span>proyectos publicados</span></div></div>
+<p class="sub">Sería mi primera experiencia laboral como desarrollador, pero no mi primera experiencia profesional en el sector tecnológico.</p>
+<div class="stats"><div><b data-n="10">0</b><span>años en soporte tecnológico</span></div><div><b data-n="3">0</b><span>formaciones en desarrollo de software</span></div><div><b data-n="4">0</b><span>proyectos publicados</span></div></div>
 <div class="grid4">
-<div class="card"><h3>Conozco al usuario real</h3><p>Cuento con mas de diez años con clientes finales  resolviendo incidentes: sé cómo se ve un error desde el otro lado y escribo código pensando en quien lo va a usar.</p></div>
+<div class="card"><h3>Conozco al usuario real</h3><p>Cuento con más de diez años con clientes finales resolviendo incidentes: sé cómo se ve un error desde el otro lado y escribo código pensando en quien lo va a usar.</p></div>
 <div class="card"><h3>Aprendo rápido y con ganas</h3><p>En pocos años completé varias formaciones en desarrollo de software y sigo estudiando Ingeniería. Cuando aparece una tecnología nueva, la leo, la pruebo y la uso.</p></div>
 <div class="card"><h3>Inglés técnico</h3><p>Leo documentación oficial, issues y mensajes de error en inglés todos los días, y puedo escribir commits y documentación técnica en inglés.</p></div>
 <div class="card"><h3>Liderazgo y calma bajo presión</h3><p>Lideré un área de servicio técnico: prioricé casos, coordiné al equipo y mejoré procesos mientras la operación seguía funcionando.</p></div>
@@ -58,7 +60,29 @@
 
 <section id="proyectos">
 <h2>Proyectos</h2>
-<p class="sub">Tres proyectos propios, con código y demo en línea.</p>
+<p class="sub">Cuatro proyectos propios, con código y demo en línea. El primero es un sistema real, el de mi barbería.</p>
+<article class="case">
+<div class="case-txt">
+<h3>Barber Studio</h3>
+<p class="case-sub">Plataforma de reservas y gestión para mi barbería</p>
+<p>Sitio público donde el cliente reserva por calendario y mira el portfolio de cortes, más un panel privado para manejar la agenda, los barberos, los horarios, los clientes y las fotos. Backend en Java con Spring Boot y PostgreSQL; frontend en JavaScript puro.</p>
+<p class="arch" aria-label="Arquitectura de despliegue"><span>Vercel<small>sitio</small></span><i aria-hidden="true">&rarr;</i><span>Render<small>API Spring Boot</small></span><i aria-hidden="true">&rarr;</i><span>Neon<small>PostgreSQL</small></span><span class="sep">+</span><span>Cloudinary<small>fotos</small></span></p>
+<h4>Problemas que resolví</h4>
+<ul class="ps">
+<li><b>Dos clientes, el mismo horario.</b> El servidor revalida cada reserva y la base de datos impide solapar los turnos de un barbero. Si otro cliente se adelantó, la API rechaza la reserva con un 409.</li>
+<li><b>Horarios que ignoran lo que dura el servicio.</b> Un motor de disponibilidad calcula los huecos con la duración real de cada servicio, el descanso, los cierres y los turnos ya tomados.</li>
+<li><b>Cerrar un día con turnos reservados.</b> Los cierres y licencias muestran qué turnos afectan y nunca los cancelan solos: el dueño tiene que autorizarlo.</li>
+<li><b>Spam y datos ajenos.</b> Límite de solicitudes por IP, campo trampa contra bots, sesión con cookie HttpOnly y JWT, y cada barbería ve solamente sus propios datos.</li>
+</ul>
+<div class="tg"><span>Java 21</span><span>Spring Boot 3</span><span>Spring Security + JWT</span><span>PostgreSQL</span><span>Flyway</span><span>JPA</span><span>Testcontainers</span><span>Docker</span><span>OpenAPI</span><span>JavaScript</span><span>GitHub Actions</span></div>
+<div class="lk"><a class="btn p" href="https://barberstudio-frontend.vercel.app/" target="_blank" rel="noopener">Ver el sitio</a></div>
+<small class="note">El código está en un repositorio privado: puedo mostrarlo en una entrevista. La API corre en un servidor gratuito, así que si estuvo inactivo la primera carga puede tardar cerca de un minuto.</small>
+</div>
+<div class="case-demo">
+<div class="sim" id="sim" role="group" aria-label="Simulación del motor de disponibilidad"></div>
+<div class="kpis"><div><b>71</b><span>endpoints REST</span></div><div><b>32</b><span>pruebas de integración</span></div><div><b>8</b><span>migraciones de base de datos</span></div></div>
+</div>
+</article>
 <div class="projects">
 <article class="proj"><h3>Sistema de Turnos</h3><p>Aplicación web para pedir citas médicas: genera un número de turno único al instante y gestiona el llamado cambiando el estado de cada ticket.</p><span class="tags">Web app · Gestión de estados</span><div class="lk"><a href="https://sistemadeturno.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/SistemaDeTurnos" target="_blank" rel="noopener">Código</a></div></article>
 <article class="proj"><h3>CV Interactivo</h3><p>De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.</p><span class="tags">React · CSS</span><div class="lk"><a href="https://cvbasico.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/CV" target="_blank" rel="noopener">Código</a></div></article>
