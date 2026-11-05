@@ -60,7 +60,7 @@
 
 <section id="proyectos">
 <h2>Proyectos</h2>
-<p class="sub">Cinco proyectos propios, con demo en línea. Los dos primeros son sistemas completos: el de mi barbería y un turnero para comercios.</p>
+<p class="sub">Cinco proyectos propios, con demo en línea. Los tres primeros son casos de estudio: el sistema de mi barbería, un turnero para comercios y la landing de una hamburguesería con pedidos por WhatsApp.</p>
 <article class="case">
 <div class="case-txt">
 <h3>Barber Studio</h3>
@@ -105,8 +105,29 @@
 <div class="kpis"><div><b>4</b><span>pantallas conectadas</span></div><div><b>6</b><span>endpoints REST</span></div><div><b>1,5 s</b><span>de sincronización entre pantallas</span></div></div>
 </div>
 </article>
+<article class="case">
+<div class="case-txt">
+<h3>Route 66 Diner</h3>
+<p class="case-sub">Landing con pedidos por WhatsApp para una hamburguesería</p>
+<p>Sitio para una hamburguesería estilo diner americano: el cliente recorre el menú por categorías, arma su pedido en un carrito y lo envía por WhatsApp, con delivery o retiro en el local. Hecho en Angular 20 sin backend, con identidad visual propia e ilustraciones SVG dibujadas a mano. Se adapta a un negocio real cambiando un solo archivo de configuración.</p>
+<p class="arch" aria-label="Arquitectura"><span>Catálogo<small>menú y precios</small></span><i aria-hidden="true">&rarr;</i><span>Angular<small>signals, sin zone.js</small></span><i aria-hidden="true">&rarr;</i><span>Carrito<small>LocalStorage</small></span><i aria-hidden="true">&rarr;</i><span>WhatsApp<small>pedido armado</small></span><span class="sep">+</span><span>Vercel<small>sitio estático</small></span></p>
+<h4>Problemas que resolví</h4>
+<ul class="ps">
+<li><b>Una animación de scroll que no trabe la página.</b> La hamburguesa del inicio se desarma y se vuelve a armar al bajar. Un listener pasivo con requestAnimationFrame escribe una sola variable CSS y las capas se mueven con CSS, así que Angular no vuelve a renderizar en cada frame. Si el usuario pide menos movimiento, la animación se apaga.</li>
+<li><b>Un carrito que sobrevive a una recarga sin confiar en datos viejos.</b> En el navegador se guardan solo los productos y las cantidades; los precios siempre salen del menú. Al restaurar, se descartan productos que ya no existen, cantidades inválidas y duplicados.</li>
+<li><b>Pedidos sin servidor.</b> El checkout valida los datos (la dirección es obligatoria solo con delivery) y arma un mensaje con el detalle, el envío y el total. El envío es gratis desde $ 1.500 y el carrito muestra cuánto falta para llegar.</li>
+<li><b>"Abierto" o "Cerrado" correcto para cualquier visitante.</b> El estado usa la hora de Montevideo aunque el visitante esté en otro país, y contempla los días que el local cierra pasada la medianoche.</li>
+</ul>
+<div class="tg"><span>Angular 20</span><span>TypeScript</span><span>Signals</span><span>Zoneless</span><span>Reactive Forms</span><span>CSS3</span><span>Container queries</span><span>SVG</span><span>LocalStorage</span><span>Vercel</span></div>
+<div class="lk"><a class="btn p" href="https://route66-ebon.vercel.app" target="_blank" rel="noopener">Ver el sitio</a><a class="btn" href="https://github.com/jesus199324/route66" target="_blank" rel="noopener">Código</a></div>
+<small class="note">Es una marca ficticia: el número de WhatsApp de la demo es de ejemplo.</small>
+</div>
+<div class="case-demo">
+<div class="sim" id="sim-route66" role="group" aria-label="Simulación del carrito"></div>
+<div class="kpis"><div><b>16</b><span>productos en el menú</span></div><div><b>17</b><span>componentes standalone</span></div><div><b>0</b><span>imágenes externas</span></div></div>
+</div>
+</article>
 <div class="projects">
-<article class="proj" data-demo="route66"><h3>Route 66 Diner</h3><p>Landing page para una hamburguesería estilo diner americano: menú por categorías, carrito que se guarda en el navegador y pedido que llega armado por WhatsApp, con delivery o retiro. Todas las ilustraciones son SVG propios.</p><span class="tags">Angular 20 · TypeScript · CSS</span><div class="lk"><a href="https://route66-ebon.vercel.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/jesus199324/route66" target="_blank" rel="noopener">Código</a></div></article>
 <article class="proj" data-demo="cv"><h3>CV Interactivo</h3><p>De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.</p><span class="tags">React · CSS</span><div class="lk"><a href="https://cvbasico.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/CV" target="_blank" rel="noopener">Código</a></div></article>
 <article class="proj" data-demo="poke"><h3>Pokédex con API</h3><p>Mi primer proyecto consumiendo una API: datos de Pokémon en pantalla, de forma dinámica.</p><span class="tags">JavaScript · REST</span><div class="lk"><a href="https://pockedexapi2025.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/PokemonApi" target="_blank" rel="noopener">Código</a></div></article>
 </div>

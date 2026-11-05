@@ -97,10 +97,6 @@ document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
 const pj=d=>document.querySelector('.proj[data-demo="'+d+'"]');
 {const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="mk"><i></i><div><u></u><u class="s"></u></div></div><u></u><u class="s"></u><div class="row"><button type="button">Probar tema claro u oscuro</button></div>';el.querySelector('button').onclick=()=>el.classList.toggle('lt');pj('cv')?.prepend(el)}
 {const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="pk"></div><small>Tocá una carta</small>';const g=el.querySelector('.pk');[['Pikachu','Eléctrico',48],['Charmander','Fuego',15],['Bulbasaur','Planta',140],['Squirtle','Agua',200]].forEach(([a,t,h])=>{const b=document.createElement('button');b.type='button';b.textContent=a;b.style.setProperty('--h',h);b.onclick=()=>{b.classList.toggle('f');b.textContent=b.classList.contains('f')?t:a};g.appendChild(b)});pj('poke')?.prepend(el)}
-// ---- Mini demo del carrito (Route 66 Diner): mismos precios que el menú ----
-{const host=pj('route66');if(host){const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="row"></div><span class="big">$ 0</span><small>Tocá para sumar al pedido</small>';const row=el.querySelector('.row'),big=el.querySelector('.big'),msg=el.querySelector('small'),q={};const P=[['Classic 66',420],['Papas',190],['Shake',230]];
-P.forEach(([n,pr])=>{const b=document.createElement('button');b.type='button';b.textContent='+ '+n;b.onclick=()=>{q[n]=(q[n]||0)+1;big.textContent='$ '+P.reduce((t,[k,v])=>t+(q[k]||0)*v,0).toLocaleString('es-UY');msg.textContent='WhatsApp: '+P.filter(([k])=>q[k]).map(([k])=>q[k]+'× '+k).join(', ')};row.append(b)});host.prepend(el)}}
-
 
 // ---- Simulador de disponibilidad (Barber Studio): datos de ejemplo, misma regla que el backend ----
 {const host=document.getElementById('sim');if(host){
@@ -152,5 +148,29 @@ else if(b.hasAttribute('data-both')){const x=take('C'),y=take('C');msg='Dos pedi
 else if(b.dataset.call){const c=q.shift();tv={c,d:b.dataset.call};hist.unshift(tv);flash=true;msg='Ding. "Turno '+c[0]+' '+parseInt(c.slice(2),10)+', puesto '+b.dataset.call+'."';cls='ok'}
 else if(b.hasAttribute('data-rep')){flash=true;msg='Se vuelve a anunciar '+tv.c+' sin duplicar el historial.';cls=''}
 else if(b.hasAttribute('data-reset')){cnt={};q=[];tv=null;hist=[];msg='Numeración reiniciada, como pasa sola cada medianoche.';cls=''}
+draw()});
+draw()}}
+
+// ---- Simulador del carrito (Route 66 Diner): mismos precios y reglas de envío que el sitio ----
+{const host=document.getElementById('sim-route66');if(host){
+const P=[['Classic 66',420],['Papas Route',190],['Shake',230]],FEE=90,FREE=1500;
+const money=n=>'$ '+n.toLocaleString('es-UY');
+let q={},mode='delivery',msg='Sumá productos y mirá cómo cambian el envío y el total.',cls='',out='';
+function draw(){const sub=P.reduce((t,[n,v])=>t+(q[n]||0)*v,0),del=mode==='delivery'&&sub>0,fee=del&&sub<FREE?FEE:0,falta=del?Math.max(0,FREE-sub):0,pct=Math.min(100,Math.round(sub/FREE*100));
+host.innerHTML='<p class="cap">Simulación del carrito<small>Mismos precios y reglas de envío que el sitio. El pedido real se abre en WhatsApp.</small></p>'+
+'<div class="row" role="group" aria-label="Menú">'+P.map(([n,v])=>'<button type="button" data-p="'+n+'">+ '+n+' · '+money(v)+'</button>').join('')+'</div>'+
+'<div class="row" role="group" aria-label="Entrega"><button type="button" data-m="delivery" aria-pressed="'+(mode==='delivery')+'">Delivery</button><button type="button" data-m="retiro" aria-pressed="'+(mode==='retiro')+'">Retiro en el local</button></div>'+
+'<div class="cart">'+(sub?P.filter(([n])=>q[n]).map(([n,v])=>'<span>'+q[n]+' × '+n+'</span><span>'+money(q[n]*v)+'</span>').join('')+
+'<span>Envío</span><span>'+(mode==='retiro'?'retiro':fee?money(fee):'gratis')+'</span><b>Total</b><b>'+money(sub+fee)+'</b>':'<em>Carrito vacío</em>')+'</div>'+
+(del?'<div class="prog" aria-hidden="true"><i style="width:'+pct+'%"></i></div><p class="legend">'+(falta?'Te faltan '+money(falta)+' para el envío gratis.':'Envío gratis desbloqueado.')+'</p>':'')+
+'<div class="row"><button type="button" class="go" data-send '+(sub?'':'disabled')+'>Enviar por WhatsApp</button><button type="button" data-reset>Vaciar</button></div>'+
+(out?'<pre class="wa">'+out+'</pre>':'')+
+'<p class="st '+cls+'" aria-live="polite">'+msg+'</p>'}
+host.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
+if(b.dataset.p){q[b.dataset.p]=Math.min(20,(q[b.dataset.p]||0)+1);out='';msg='Sumaste '+b.dataset.p+'. Los precios salen del menú, no del carrito guardado.';cls=''}
+else if(b.dataset.m){mode=b.dataset.m;out='';msg=mode==='retiro'?'Retiro en el local: sin costo de envío ni dirección.':'Delivery: la dirección pasa a ser obligatoria.';cls=''}
+else if(b.hasAttribute('data-send')){const sub=P.reduce((t,[n,v])=>t+(q[n]||0)*v,0),fee=mode==='delivery'&&sub<FREE?FEE:0;
+out=['¡Hola ROUTE 66 DINER! Quiero hacer un pedido 🍔',...P.filter(([n])=>q[n]).map(([n,v])=>'• '+q[n]+' × '+n+' — '+money(q[n]*v)),'Total: '+money(sub+fee),mode==='delivery'?'🚗 Delivery':'🏁 Retiro en el local'].join('\n');msg='Mensaje listo: en el sitio se abre wa.me con este texto.';cls='ok'}
+else if(b.hasAttribute('data-reset')){q={};out='';msg='Carrito vacío.';cls=''}
 draw()});
 draw()}}
