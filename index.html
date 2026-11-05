@@ -60,7 +60,7 @@
 
 <section id="proyectos">
 <h2>Proyectos</h2>
-<p class="sub">Cuatro proyectos propios, con código y demo en línea. El primero es un sistema real, el de mi barbería.</p>
+<p class="sub">Cuatro proyectos propios, con demo en línea. Los dos primeros son sistemas completos: el de mi barbería y un turnero para comercios.</p>
 <article class="case">
 <div class="case-txt">
 <h3>Barber Studio</h3>
@@ -83,8 +83,29 @@
 <div class="kpis"><div><b>71</b><span>endpoints REST</span></div><div><b>32</b><span>pruebas de integración</span></div><div><b>8</b><span>migraciones de base de datos</span></div></div>
 </div>
 </article>
+<article class="case">
+<div class="case-txt">
+<h3>Sistema de Turnos</h3>
+<p class="case-sub">Turnero para comercios: sacar número, llamar y anunciar</p>
+<p>El cliente saca su número en una tablet o en el celular, quien atiende lo llama desde el mostrador y la TV de la sala lo muestra en grande y lo anuncia con timbre y voz. Pensado para venderse a cualquier local: cada comercio carga su nombre, sus sectores y sus puestos desde un panel, sin tocar código.</p>
+<p class="arch" aria-label="Arquitectura"><span>Tótem<small>cliente</small></span><span class="sep">+</span><span>Mostrador<small>con PIN</small></span><span class="sep">+</span><span>TV<small>sala de espera</small></span><i aria-hidden="true">&rarr;</i><span>Vercel<small>Next.js + API</small></span><i aria-hidden="true">&rarr;</i><span>Upstash<small>Redis</small></span></p>
+<h4>Problemas que resolví</h4>
+<ul class="ps">
+<li><b>Dos personas sacan número en el mismo segundo.</b> Cada cambio pasa por un candado en Redis, así que nunca se entrega dos veces el mismo número. Lo probé con 30 pedidos simultáneos.</li>
+<li><b>Tótem, mostrador y TV en aparatos distintos.</b> Las pantallas se sincronizan solas contra la API. La TV anuncia cada llamado una sola vez, y "Repetir" lo vuelve a anunciar sin duplicar el historial.</li>
+<li><b>Un servidor que no guarda archivos.</b> En Vercel no se puede escribir en disco: el estado vive en Redis. Si se instala en una PC del local, usa un archivo JSON. Se elige solo según la configuración.</li>
+<li><b>Cada comercio es distinto.</b> Sectores con su letra y color (A-001, C-001), cantidad de puestos y voz se editan desde un panel con PIN. La numeración se reinicia a medianoche, con la zona horaria del local.</li>
+</ul>
+<div class="tg"><span>Next.js 15</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Redis (Upstash)</span><span>API REST</span><span>Web Speech API</span><span>Vercel</span></div>
+<div class="lk"><a class="btn p" href="https://sistema-de-turnos-tau.vercel.app" target="_blank" rel="noopener">Ver el sistema</a><a class="btn" href="https://github.com/jesus199324/SistemaDeTurnos" target="_blank" rel="noopener">Código</a></div>
+<small class="note">Para verlo en vivo: abrí /pantalla en una compu y sacá un número desde el celular.</small>
+</div>
+<div class="case-demo">
+<div class="sim" id="sim-turnos" role="group" aria-label="Simulación del turnero"></div>
+<div class="kpis"><div><b>4</b><span>pantallas conectadas</span></div><div><b>6</b><span>endpoints REST</span></div><div><b>1,5 s</b><span>de sincronización entre pantallas</span></div></div>
+</div>
+</article>
 <div class="projects">
-<article class="proj"><h3>Sistema de Turnos</h3><p>Turnero para cualquier comercio: el cliente saca su número en una tablet o en el celular, el mostrador lo llama y la TV de la sala lo anuncia con timbre y voz. Ordena la fila sin papelitos: numeración por sector que se reinicia cada día, varias cajas atendiendo a la vez sin repetir números y cada local configura su nombre y sectores sin tocar código.</p><span class="tags">Next.js · TypeScript · Redis</span><div class="lk"><a href="https://sistema-de-turnos-tau.vercel.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/jesus199324/SistemaDeTurnos" target="_blank" rel="noopener">Código</a></div></article>
 <article class="proj"><h3>CV Interactivo</h3><p>De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.</p><span class="tags">React · CSS</span><div class="lk"><a href="https://cvbasico.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/CV" target="_blank" rel="noopener">Código</a></div></article>
 <article class="proj"><h3>Pokédex con API</h3><p>Mi primer proyecto consumiendo una API: datos de Pokémon en pantalla, de forma dinámica.</p><span class="tags">JavaScript · REST</span><div class="lk"><a href="https://pockedexapi2025.netlify.app" target="_blank" rel="noopener">Ver demo</a><a href="https://github.com/JesusAlbornoz29/PokemonApi" target="_blank" rel="noopener">Código</a></div></article>
 </div>
