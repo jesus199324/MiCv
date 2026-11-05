@@ -40,7 +40,7 @@ def header(c, doc):
     c.setFillColor(NAVY); c.rect(0, H-44*mm, W, 44*mm, stroke=0, fill=1)
     c.setFillColor(CYAN); c.rect(0, H-44*mm, W, 1.6*mm, stroke=0, fill=1)
     c.setFillColor(HexColor('#FFFFFF')); c.setFont('Helvetica-Bold', 23); c.drawString(ML, H-19*mm, 'Alfredo Jesús Albornoz')
-    c.setFillColor(CYAN); c.setFont('Helvetica-Bold', 11.5); c.drawString(ML, H-26.5*mm, 'Desarrollador de Software Backend')
+    c.setFillColor(CYAN); c.setFont('Helvetica-Bold', 11.5); c.drawString(ML, H-26.5*mm, 'Desarrollador de Software Full Stack Junior')
     c.setFillColor(HexColor('#C9D6EA')); c.setFont('Helvetica', 8.6)
     x = ML
     for label, url in [('alfredojesus.albornoz@gmail.com', 'mailto:alfredojesus.albornoz@gmail.com'), ('+598 99 119 628', 'https://wa.me/59899119628'), ('linkedin.com/in/alfredojalbornoz', 'https://www.linkedin.com/in/alfredojalbornoz/'), ('github.com/JesusAlbornoz29', 'https://github.com/JesusAlbornoz29')]:
@@ -59,7 +59,7 @@ def footer(c, doc):
 
 s = [Spacer(1, 30*mm)]
 s += section('Perfil')
-s.append(Paragraph('Diez años en soporte tecnológico resolviendo problemas reales; ahora construyo las APIs que los evitan. Certified Tech Developer con especialización en Backend (Digital House, diciembre de 2024). Aprendo rápido, leo documentación técnica en inglés y busco mi primera experiencia como desarrollador de software.', body))
+s.append(Paragraph('Diez años en soporte tecnológico resolviendo problemas reales; ahora construyo las APIs que los evitan. Formado como Desarrollador de Software con énfasis en Backend (Digital House, 2022 - 2025). Aprendo rápido, leo documentación técnica en inglés y busco mi primera experiencia como desarrollador de software.', body))
 
 tech = section('Conocimientos técnicos')
 rows = [('Backend', 'Java, Spring Boot, Node.js, Python, Maven, Hibernate, MySQL, PostgreSQL, MongoDB'), ('Frontend', 'JavaScript, TypeScript, React, HTML, CSS, Sass, Bootstrap, Tailwind CSS'), ('DevOps', 'Docker, AWS, Terraform, Ansible, Jenkins, Git'), ('Sistemas', 'Windows, Linux, macOS, Shell scripting, SSH'), ('Testing', 'JUnit, Postman, Debugging'), ('Idiomas', 'Inglés técnico')]
@@ -68,22 +68,21 @@ t.setStyle(TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('LEFTPADDING', (0,0),
 s.append(KeepTogether(tech + [t]))
 
 s += section('Experiencia')
-s.append(entry('Técnico 1A · Digitador · Chofer', 'CompoSystem', '2026 – actualidad', 'Soporte técnico y mantenimiento de impresoras empresariales y equipos informáticos, en taller y en las instalaciones de empresas estatales.'))
+s.append(entry('Técnico 1A · Digitador · Chofer', 'CompoSystem', '2026 – actualidad', 'Soporte técnico y mantenimiento de impresoras empresariales y equipos informáticos para organismos públicos.'))
 s.append(entry('Encargado de Servicio PostVenta', 'La Oferta Irresistible (LOi)', '2020 – 2026', 'Lideré el área de servicio técnico: organicé al equipo, resolví casos complejos y mejoré los procesos de atención.'))
 s.append(entry('Técnico de TI', 'La Oferta Irresistible (LOi)', '2016 – 2020', 'Soporte técnico, mantenimiento de equipos y resolución de incidentes para toda la empresa.'))
 s.append(entry('Centro Coordinador de Operaciones de Paz', 'Comando General del Ejército', '2012 – 2016', 'Trabajo en un entorno de disciplina y responsabilidad.'))
 s.append(entry('Técnico en Gestión y Soporte IT', 'Net Pc', '2011 – 2012', 'Soporte y gestión de sistemas para clientes.'))
 
 form = section('Formación')
-form.append(entry('Certified Tech Developer · Especialización Backend', 'Digital House', 'Diciembre de 2024', 'Backend I, II y III · Bases de Datos I y II · Infraestructura I, II y III · Testing I y II · Programación orientada a objetos · Maquetado y frontend con JavaScript · Diseño UX/UI · Gestión de producto digital · Proyectos integradores I y II · Comunicación efectiva, trabajo en equipo y resolución de problemas.'))
-form.append(entry('Desarrollador Web Full Stack', 'UTEC y Digital House', '2022 – 2023', 'React en el front, Node.js en el back y metodologías ágiles.'))
+form.append(entry('Desarrollador de Software · Énfasis Backend', 'Digital House', '2022 - 2025', 'Backend I, II y III · Bases de Datos I y II · Infraestructura I, II y III · Testing I y II · Programación orientada a objetos · Maquetado y frontend con JavaScript · Diseño UX/UI · Gestión de producto digital · Proyectos integradores I y II · Comunicación efectiva, trabajo en equipo y resolución de problemas.'))
 form.append(entry('Iniciación al Desarrollo con IA', 'Big School', '2025', None))
-form.append(entry('Ingeniería en Computación', 'UdelaR', 'En curso', None))
+form.append(entry('Ingeniería en Computación', 'UdelaR', 'Pospuesto', None))
 form.append(entry('Bachiller Tecnológico en Informática', None, '2016 – 2020', 'Redes, hardware y lógica de programación, con fundamentos de Java y de sistemas operativos.'))
 
 s.append(KeepTogether(form))
 
-items = [('Sistema de Turnos', 'sistemadeturno.netlify.app', 'Aplicación web para pedir citas médicas: genera un número de turno único y gestiona el llamado cambiando el estado de cada ticket.'), ('CV Interactivo', 'cvbasico.netlify.app', 'De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.'), ('Pokédex con API', 'pockedexapi2025.netlify.app', 'Mi primer proyecto consumiendo una API: datos de Pokémon en pantalla, de forma dinámica.')]
+items = [('Barber Studio', 'barberstudio-frontend.vercel.app', 'Plataforma de reservas y gestión para mi barbería: reserva por calendario, portfolio y panel de agenda, barberos, horarios y clientes. Java, Spring Boot, PostgreSQL y JavaScript; desplegada en Vercel, Render, Neon y Cloudinary.'), ('Sistema de Turnos', 'sistemadeturno.netlify.app', 'Aplicación web para pedir citas médicas: genera un número de turno único y gestiona el llamado cambiando el estado de cada ticket.'), ('CV Interactivo', 'cvbasico.netlify.app', 'De un CV estático en HTML y CSS a uno dinámico en React, fácil de editar y actualizar.'), ('Pokédex con API', 'pockedexapi2025.netlify.app', 'Mi primer proyecto consumiendo una API: datos de Pokémon en pantalla, de forma dinámica.')]
 blocks = [entry_items(n, '<link href="https://%s" color="#0B7285">%s</link>' % (u, u), '', d) for n, u, d in items]
 s.append(KeepTogether(section('Proyectos') + blocks[0]))
 s += [KeepTogether(b) for b in blocks[1:]]

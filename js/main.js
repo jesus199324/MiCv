@@ -1,8 +1,8 @@
 const D={
-perfil:{nombre:"Alfredo Jesús Albornoz",rol:"Desarrollador de Software Backend",ubicacion:"Montevideo, Uruguay",experiencia_it_anios:10,ingles:"técnico",estado:"Disponible para su primera oportunidad como desarrollador"},
+perfil:{nombre:"Alfredo Jesús Albornoz",rol:"Desarrollador de Software Full Stack Junior",ubicacion:"Montevideo, Uruguay",experiencia_it_anios:10,ingles:"técnico",estado:"Disponible para sumarme a un equipo como Desarrollador Full Stack Junior"},
 skills:{backend:["Java","Spring Boot","Node.js","Python","Hibernate","MySQL","PostgreSQL","MongoDB"],frontend:["JavaScript","React","HTML","CSS","Tailwind"],devops:["Docker","AWS","Terraform","Jenkins"],sistemas:["Windows","Linux","macOS","Shell scripting","SSH"]},
 experiencia:[{empresa:"CompoSystem",puesto:"Técnico 1A · Digitador · Chofer",desde:2026,hasta:"actualidad"},{empresa:"La Oferta Irresistible",puesto:"Encargado de Servicio PostVenta",desde:2020,hasta:2026},{empresa:"La Oferta Irresistible",puesto:"Técnico de TI",desde:2016,hasta:2020},{empresa:"C.C.O.P.E. · Ejército",puesto:"Operaciones",desde:2012,hasta:2016}],
-proyectos:[{nombre:"Sistema de Turnos",demo:"sistemadeturno.netlify.app"},{nombre:"CV Interactivo",stack:["React"]},{nombre:"Pokédex API",stack:["JavaScript","REST"]}],
+proyectos:[{nombre:"Barber Studio",stack:["Java","Spring Boot","PostgreSQL"],infraestructura:["Vercel","Render","Neon","Cloudinary"],demo:"barberstudio-frontend.vercel.app"},{nombre:"Sistema de Turnos",demo:"sistemadeturno.netlify.app"},{nombre:"CV Interactivo",stack:["React"]},{nombre:"Pokédex API",stack:["JavaScript","REST"]}],
 contacto:{email:"alfredojesus.albornoz@gmail.com",whatsapp:"+598 99 119 628",linkedin:"alfredojalbornoz",github:"JesusAlbornoz29"}};
 const ADR=[
 ["ADR-001","Pasar de soporte IT a desarrollo de software","Aceptada","Después de 10 años en soporte y liderazgo técnico, resolvía a mano problemas que el software podía evitar.","Formarme como desarrollador en UTEC y Digital House (2022).","Entiendo la operación y al usuario desde adentro. Tengo que demostrar mi nivel con proyectos reales."],
@@ -60,14 +60,12 @@ tl("exp",[
 ["2012 – 2016","Centro Coordinador de Operaciones de Paz · Ejército","Trabajo en el Comando General del Ejército, en un entorno de disciplina y responsabilidad."],
 ["2011 – 2012","Técnico en Gestión y Soporte IT · Net Pc","Mi primer trabajo: soporte y gestión de sistemas para clientes."]]);
 
-const W=["Desarrollador Backend","de Java y Spring Boot","líder en soporte IT","estudiante de Ingeniería","un solucionador de problemas","alguien que aprende rápido"],rot=document.getElementById("rot");
+const W=["Desarrollador Full Stack Junior","de Java y Spring Boot","líder en soporte IT","estudiante de Ingeniería","un solucionador de problemas","alguien que aprende rápido"],rot=document.getElementById("rot");
 let wi=0,ci=0,del=false;
 function tick(){const w=W[wi];if(reduce){rot.textContent=W[wi=(wi+1)%W.length];return setTimeout(tick,2600)}
 ci+=del?-1:1;rot.textContent=w.slice(0,ci);let t=del?35:70;if(!del&&ci===w.length){del=true;t=1600}else if(del&&ci===0){del=false;wi=(wi+1)%W.length;t=300}setTimeout(tick,t)}
 rot.textContent="";tick();
-const root=document.documentElement,tb=document.getElementById("theme");
-function flip(){root.dataset.theme=root.dataset.theme==="light"?"dark":"light"}
-tb.onclick=flip;
+const root=document.documentElement;
 function hue(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))%360;return h}
 function ab(s){return({JavaScript:'JS',TypeScript:'TS',PostgreSQL:'Pg',MongoDB:'Mg',AWS:'AWS','Spring Boot':'Sb','Node.js':'No','Tailwind CSS':'Tw',Windows:'Win',macOS:'mac','Shell scripting':'Sh',SSH:'SSH'})[s]||s.slice(0,2)}
 
@@ -91,7 +89,7 @@ addEventListener('scroll',()=>{const y=scrollY,m=document.documentElement.scroll
 function count(b){b.done=1;const n=+b.dataset.n;let i=0;const t=setInterval(()=>{i++;b.textContent=Math.round(n*i/30);if(i>=30)clearInterval(t)},40)}
 if(reduce)document.querySelectorAll('b[data-n]').forEach(b=>b.textContent=b.dataset.n);
 const io=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target;if(e.isIntersecting){t.classList.add('in');const b=t.querySelector('b[data-n]');if(b&&!b.done)count(b)}else{t.classList.toggle('top',e.boundingClientRect.top<0);t.classList.remove('in')}}),{threshold:.12});
-if(!reduce)document.querySelectorAll('h2,.sub,.card,.proj,.adr,.tl li,.ecard,.contact a,.en,.stats>div').forEach(el=>{el.classList.add('rv');io.observe(el)});
+if(!reduce)document.querySelectorAll('h2,.sub,.card,.case,.proj,.adr,.tl li,.ecard,.contact a,.en,.stats>div').forEach(el=>{el.classList.add('rv');io.observe(el)});
 const links=[...document.querySelectorAll('nav a')];
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('act',a.hash==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
@@ -103,3 +101,35 @@ el.querySelector('.n').onclick=()=>{n++;const t='A-'+String(n).padStart(3,'0');q
 el.querySelector('.c').onclick=()=>{if(q.length){v.textContent='Llamando a '+q.shift();v.classList.remove('pulse');void v.offsetWidth;v.classList.add('pulse')}else v.textContent='Sin turnos';r()}}
 {const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="mk"><i></i><div><u></u><u class="s"></u></div></div><u></u><u class="s"></u><div class="row"><button type="button">Probar tema claro u oscuro</button></div>';el.querySelector('button').onclick=()=>el.classList.toggle('lt');pj[1].prepend(el)}
 {const el=document.createElement('div');el.className='pv';el.innerHTML='<div class="pk"></div><small>Tocá una carta</small>';const g=el.querySelector('.pk');[['Pikachu','Eléctrico',48],['Charmander','Fuego',15],['Bulbasaur','Planta',140],['Squirtle','Agua',200]].forEach(([a,t,h])=>{const b=document.createElement('button');b.type='button';b.textContent=a;b.style.setProperty('--h',h);b.onclick=()=>{b.classList.toggle('f');b.textContent=b.classList.contains('f')?t:a};g.appendChild(b)});pj[2].prepend(el)}
+
+// ---- Simulador de disponibilidad (Barber Studio): datos de ejemplo, misma regla que el backend ----
+{const host=document.getElementById('sim');if(host){
+const SV=[['Corte',30],['Corte y barba',60]],BUSY=[[630,660],[780,810]],BRK=[720,750],END=900,T=[];
+for(let m=600;m<END;m+=30)T.push(m);
+const fmt=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+const ov=(a,b,[c,d])=>a<d&&c<b;
+let svc=0,sel=null,race=false,ex=[],msg='Elegí un servicio y un horario libre.',cls='';
+function why(s,dur){const e=s+dur;if(e>END)return'fuera';if(ov(s,e,BRK))return'brk';if(BUSY.concat(ex.map(x=>[x.s,x.e])).some(r=>ov(s,e,r)))return'busy';return''}
+function draw(){const dur=SV[svc][1];
+host.innerHTML='<p class="cap">Simulación del motor de disponibilidad<small>Datos de ejemplo. El servicio y los turnos ya tomados cambian los horarios libres.</small></p>'+
+'<div class="row" role="group" aria-label="Servicio">'+SV.map((x,i)=>'<button type="button" data-sv="'+i+'" aria-pressed="'+(i===svc)+'">'+x[0]+' · '+x[1]+' min</button>').join('')+'</div>'+
+'<div class="slots">'+T.map(s=>{const w=why(s,dur),mine=ex.some(x=>x.mine&&x.s===s);
+if(mine)return'<button type="button" class="mine" disabled aria-label="'+fmt(s)+' reservado por vos">'+fmt(s)+'</button>';
+if(w==='brk'&&s>=BRK[0]&&s<BRK[1])return'<button type="button" class="brk" disabled aria-label="'+fmt(s)+' descanso">descanso</button>';
+if(w)return'<button type="button" disabled aria-label="'+fmt(s)+' no disponible">'+fmt(s)+'</button>';
+return'<button type="button" data-s="'+s+'" aria-pressed="'+(sel===s)+'">'+fmt(s)+'</button>'}).join('')+'</div>'+
+'<p class="legend">Tachado: no entra (turno ocupado, descanso o fuera de horario). Verde: tu reserva.</p>'+
+'<div class="row"><button type="button" class="go" data-go '+(sel===null?'disabled':'')+'>Reservar'+(sel!==null?' '+fmt(sel):'')+'</button>'+
+'<button type="button" data-race aria-pressed="'+race+'">Otro cliente reserva antes</button><button type="button" data-reset>Reiniciar</button></div>'+
+'<p class="st '+cls+'" aria-live="polite">'+msg+'</p>'}
+host.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const dur=SV[svc][1];
+if(b.dataset.sv!==undefined){svc=+b.dataset.sv;sel=null;msg='Servicio de '+SV[svc][1]+' min: los horarios libres se recalcularon.';cls=''}
+else if(b.dataset.s!==undefined){sel=+b.dataset.s;msg='Horario '+fmt(sel)+' a '+fmt(sel+dur)+' seleccionado.';cls=''}
+else if(b.hasAttribute('data-race')){race=!race;msg=race?'Al reservar, otro cliente se va a adelantar con ese mismo horario.':'Reserva normal.';cls=''}
+else if(b.hasAttribute('data-reset')){svc=0;sel=null;race=false;ex=[];msg='Elegí un servicio y un horario libre.';cls=''}
+else if(b.hasAttribute('data-go')&&sel!==null){
+  if(race){ex.push({s:sel,e:sel+dur,mine:false});msg='409 Conflict: ese horario ya no está libre. Elegí otro.';cls='er';race=false}
+  else{ex.push({s:sel,e:sel+dur,mine:true});msg='201 Created: reserva confirmada de '+fmt(sel)+' a '+fmt(sel+dur)+' ('+SV[svc][0]+').';cls='ok'}
+  sel=null}
+draw()});
+draw()}}
