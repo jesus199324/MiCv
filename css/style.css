@@ -169,3 +169,14 @@ header{transition:transform .35s;background:color-mix(in srgb,var(--bg) 78%,tran
 .sim .cart b{color:var(--ink);border-top:1px solid var(--line);padding-top:6px;margin-top:2px}.sim .cart em{font-style:normal}
 .sim .prog{height:6px;border-radius:3px;background:var(--line);overflow:hidden}.sim .prog i{display:block;height:100%;background:var(--acc);transition:width .3s}
 .sim .wa{margin:0;min-height:0;height:auto;max-height:none;white-space:pre-wrap;font:500 .8rem/1.5 'IBM Plex Mono',monospace;background:#0B2A22;border:1px solid #1F6F55;color:#CFF5E6;border-radius:10px 10px 10px 2px;padding:10px 12px}
+
+/* ---- Simulador "Abierto ahora" (Centro Fitness Sayago y Nuevo Cantón) ---- */
+.sim .days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.sim .days button{padding:7px 0;font-size:.82rem;text-align:center}
+.sim .tm{display:flex;align-items:center;gap:10px;font:500 .85rem 'IBM Plex Mono',monospace;color:var(--mute)}
+.sim .tm output{color:var(--ink);min-width:3.4em;font-weight:600}
+.sim .tm input{flex:1;min-width:0;accent-color:var(--acc)}
+.sim .op{display:flex;align-items:center;gap:10px;margin:0;font-weight:600;line-height:1.4}
+.sim .op .dot{width:12px;height:12px;border-radius:50%;background:var(--num);flex:none}
+.sim .op.on .dot{background:var(--ok);box-shadow:0 0 0 4px #34D39933}
+.sim .ex{margin:0;color:var(--mute);font-size:.88rem;line-height:1.5}

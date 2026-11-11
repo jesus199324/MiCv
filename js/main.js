@@ -2,7 +2,7 @@ const D={
 perfil:{nombre:"Alfredo Jesús Albornoz",rol:"Desarrollador de Software Full Stack Junior",ubicacion:"Montevideo, Uruguay",experiencia_it_anios:10,ingles:"técnico",estado:"Disponible para sumarme a un equipo como Desarrollador Full Stack Junior"},
 skills:{backend:["Java","Spring Boot","Node.js","Python","Hibernate","MySQL","PostgreSQL","MongoDB"],frontend:["JavaScript","React","HTML","CSS","Tailwind"],devops:["Docker","AWS","Terraform","Jenkins"],sistemas:["Windows","Linux","macOS","Shell scripting","SSH"]},
 experiencia:[{empresa:"CompoSystem",puesto:"Técnico 1A · Digitador · Chofer",desde:2026,hasta:"actualidad"},{empresa:"La Oferta Irresistible",puesto:"Encargado de Servicio PostVenta",desde:2020,hasta:2026},{empresa:"La Oferta Irresistible",puesto:"Técnico de TI",desde:2016,hasta:2020},{empresa:"C.C.O.P.E. · Ejército",puesto:"Operaciones",desde:2012,hasta:2016}],
-proyectos:[{nombre:"Barber Studio",stack:["Java","Spring Boot","PostgreSQL"],infraestructura:["Vercel","Render","Neon","Cloudinary"],demo:"barberstudio-frontend.vercel.app"},{nombre:"Sistema de Turnos",stack:["Next.js","TypeScript","Redis"],infraestructura:["Vercel","Upstash"],demo:"sistema-de-turnos-tau.vercel.app"},{nombre:"Route 66 Diner",stack:["Angular","TypeScript"],infraestructura:["Vercel"],demo:"route66-ebon.vercel.app"},{nombre:"CV Interactivo",stack:["React"]},{nombre:"Pokédex API",stack:["JavaScript","REST"]}],
+proyectos:[{nombre:"Barber Studio",stack:["Java","Spring Boot","PostgreSQL"],infraestructura:["Vercel","Render","Neon","Cloudinary"],demo:"barberstudio-frontend.vercel.app"},{nombre:"Sistema de Turnos",stack:["Next.js","TypeScript","Redis"],infraestructura:["Vercel","Upstash"],demo:"sistema-de-turnos-tau.vercel.app"},{nombre:"Route 66 Diner",stack:["Angular","TypeScript"],infraestructura:["Vercel"],demo:"route66-ebon.vercel.app"},{nombre:"Delicious",estado:"propuesta de diseño",stack:["HTML","CSS","JavaScript"],infraestructura:["Netlify"],demo:"deliciouslanding.netlify.app"},{nombre:"Centro Fitness Sayago",estado:"propuesta de diseño",stack:["HTML","CSS","JavaScript"],infraestructura:["Netlify"],demo:"centrofitnesssayago.netlify.app"},{nombre:"Nuevo Cantón",estado:"propuesta de diseño",stack:["HTML","CSS","JavaScript"],infraestructura:["Netlify"],demo:"propuestancanton.netlify.app"},{nombre:"CV Interactivo",stack:["React"]},{nombre:"Pokédex API",stack:["JavaScript","REST"]}],
 contacto:{email:"alfredojesus.albornoz@gmail.com",whatsapp:"+598 99 119 628",linkedin:"alfredojalbornoz",github:"JesusAlbornoz29"}};
 const ADR=[
 ["ADR-001","Pasar de soporte IT a desarrollo de software","Aceptada","Después de 10 años en soporte y liderazgo técnico, resolvía a mano problemas que el software podía evitar.","Formarme como desarrollador en UTEC y Digital House (2022).","Entiendo la operación y al usuario desde adentro. Tengo que demostrar mi nivel con proyectos reales."],
@@ -174,3 +174,38 @@ out=['¡Hola ROUTE 66 DINER! Quiero hacer un pedido 🍔',...P.filter(([n])=>q[n
 else if(b.hasAttribute('data-reset')){q={};out='';msg='Carrito vacío.';cls=''}
 draw()});
 draw()}}
+
+// ---- Simulador "Abierto ahora": mismas reglas que usan las páginas de Centro Fitness Sayago y Nuevo Cantón ----
+(function(){
+const DIAS=[['Lun',1],['Mar',2],['Mié',3],['Jue',4],['Vie',5],['Sáb',6],['Dom',0]];
+const hhmm=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+function ahoraMvd(){const p={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Montevideo',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(x=>{p[x.type]=x.value});
+  return{d:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday],m:(+p.hour%24)*60+(+p.minute)}}
+function sim(id,regla,extra){const host=document.getElementById(id);if(!host)return;
+  let st=ahoraMvd();st.m=Math.floor(st.m/15)*15;
+  function draw(){const r=regla(st.d,st.m);
+    host.innerHTML='<p class="cap">Simulación de «Abierto ahora»<small>La misma regla que usa la página, con la hora de Montevideo. Probá otro día u hora.</small></p>'+
+    '<div class="days" role="group" aria-label="Día de la semana">'+DIAS.map(x=>'<button type="button" data-d="'+x[1]+'" aria-pressed="'+(x[1]===st.d)+'">'+x[0]+'</button>').join('')+'</div>'+
+    '<label class="tm">Hora<input type="range" min="0" max="1425" step="15" value="'+st.m+'" aria-label="Hora del día"><output>'+hhmm(st.m)+'</output></label>'+
+    '<div class="row"><button type="button" data-now>Ahora (Montevideo)</button></div>'+
+    '<p class="op'+(r.on?' on':'')+'" aria-live="polite"><i class="dot" aria-hidden="true"></i><span>'+r.t+'</span></p>'+
+    '<p class="ex">'+extra(st.d)+'</p>'}
+  host.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.d!==undefined)st.d=+b.dataset.d;else if(b.hasAttribute('data-now')){st=ahoraMvd();st.m=Math.floor(st.m/15)*15}else return;
+    draw();const f=host.querySelector(b.dataset.d!==undefined?'button[data-d="'+st.d+'"]':'button[data-now]');if(f)f.focus()});
+  host.addEventListener('input',e=>{if(e.target.type!=='range')return;st.m=+e.target.value;
+    const r=regla(st.d,st.m),op=host.querySelector('.op');op.className='op'+(r.on?' on':'');op.querySelector('span').textContent=r.t;host.querySelector('output').textContent=hhmm(st.m)});
+  draw()}
+// Centro Fitness Sayago: lunes a viernes de 8 a 14 y de 16 a 22; sábados de 9 a 13; domingo cerrado
+const CLASES={1:'Spinning',2:'Funcional',3:'Spinning',4:'Funcional',5:'Spinning'};
+sim('sim-fitness',(d,m)=>{const f=(d>=1&&d<=5)?[[480,840],[960,1320]]:d===6?[[540,780]]:[];
+    if(f.some(x=>m>=x[0]&&m<x[1]))return{on:1,t:'Abierto ahora'};
+    if(d>=1&&d<=5&&m>=840&&m<960)return{on:0,t:'Cerrado al mediodía: abrimos a las 16'};
+    return{on:0,t:'Cerrado ahora · Lunes a viernes de 8 a 14 y de 16 a 22'}},
+  d=>CLASES[d]?'Clase de ese día: '+CLASES[d]+' a las 9:00 y a las 19:30.':'Ese día no hay clases grupales.');
+// Nuevo Cantón: martes a domingo de 12 a 01; lunes cerrado
+sim('sim-canton',(d,m)=>{const on=(d!==1&&m>=720)||(m<60&&d!==2);
+    if(on)return{on:1,t:'Abierto ahora, hasta la 01:00'};
+    return{on:0,t:d===1?'Hoy cerrado: abrimos el martes a las 12':'Cerrado ahora: abrimos a las 12'}},
+  ()=>'Parrilla: de 12 a 16 h y de 20 a 01 h.');
+})();
