@@ -29,7 +29,7 @@ Todo el contenido está en `js/main.js`:
 - Experiencia: bloque `tl("exp", [...])`.
 - Formación y certificaciones: arreglo `FORM`.
 - Skills: objeto `S`.
-- Proyectos: tarjetas en la sección `#proyectos` de `index.html` (el simulador de Barber Studio está al final de `js/main.js`).
+- Proyectos: tarjetas en la sección `#proyectos` de `index.html` (los simuladores de los casos de estudio están al final de `js/main.js`).
 
 El sitio usa un único tema oscuro; los colores están en las variables de `:root` de `css/style.css`.
 

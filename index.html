@@ -42,7 +42,7 @@
 <section id="aporte">
 <h2>Lo que aporto</h2>
 <p class="sub">Sería mi primera experiencia laboral como desarrollador, pero no mi primera experiencia profesional en el sector tecnológico.</p>
-<div class="stats"><div><b data-n="10">0</b><span>años en soporte tecnológico</span></div><div><b data-n="3">0</b><span>formaciones en desarrollo de software</span></div><div><b data-n="6">0</b><span>proyectos publicados</span></div></div>
+<div class="stats"><div><b data-n="10">0</b><span>años en soporte tecnológico</span></div><div><b data-n="3">0</b><span>formaciones en desarrollo de software</span></div><div><b data-n="8">0</b><span>proyectos publicados</span></div></div>
 <div class="grid4">
 <div class="card"><h3>Conozco al usuario real</h3><p>Cuento con más de diez años con clientes finales resolviendo incidentes: sé cómo se ve un error desde el otro lado y escribo código pensando en quien lo va a usar.</p></div>
 <div class="card"><h3>Aprendo rápido y con ganas</h3><p>En pocos años completé varias formaciones en desarrollo de software y sigo estudiando Ingeniería. Cuando aparece una tecnología nueva, la leo, la pruebo y la uso.</p></div>
@@ -60,7 +60,7 @@
 
 <section id="proyectos">
 <h2>Proyectos</h2>
-<p class="sub">Seis proyectos propios, con demo en línea. Los cuatro primeros son casos de estudio: el sistema de mi barbería, un turnero para comercios, la landing de una hamburguesería con pedidos por WhatsApp y la propuesta de web para un restaurante de mi barrio.</p>
+<p class="sub">Ocho proyectos propios, con demo en línea. Los seis primeros son casos de estudio: el sistema de mi barbería, un turnero para comercios, la landing de una hamburguesería con pedidos por WhatsApp y tres propuestas de web para negocios de Sayago: una parrilla, un gimnasio y una pizzería.</p>
 <article class="case">
 <div class="case-txt">
 <h3>Barber Studio</h3>
@@ -150,6 +150,50 @@
 <img src="assets/proyectos/delicious-promos.webp" width="260" height="563" loading="lazy" alt="Carrusel de promos de la semana en el celular, con el botón fijo para pedir">
 </div>
 <div class="kpis"><div><b>160 KB</b><span>peso total de la página</span></div><div><b>10</b><span>promos con botón para pedir</span></div><div><b>1 toque</b><span>para llamar o abrir el mapa</span></div></div>
+</div>
+</article>
+<article class="case">
+<div class="case-txt">
+<h3>Centro Fitness Sayago</h3>
+<p class="case-sub">Landing para un gimnasio de barrio con la información dispersa</p>
+<p>Centro Fitness Sayago tiene 4,6 ★ en Google con 101 opiniones, pero sus actividades y horarios se publican en Instagram. Armé una propuesta de landing de una sola página con las actividades, la grilla semanal de clases, el horario, el mapa y el contacto, pensada para el celular. Es otra propuesta de mi servicio de webs para negocios de Sayago.</p>
+<p class="arch" aria-label="De dónde viene la información y a dónde lleva"><span>Instagram + Google<small>datos públicos</small></span><i aria-hidden="true">&rarr;</i><span>Landing<small>HTML, CSS y JS</small></span><i aria-hidden="true">&rarr;</i><span>Llamar, Maps o Instagram<small>en un toque</small></span><span class="sep">+</span><span>Netlify<small>sitio estático</small></span></p>
+<h4>Problemas que resolví</h4>
+<ul class="ps">
+<li><b>Lo que busca alguien nuevo está repartido.</b> Actividades, horarios, ubicación y reputación en una sola página, en el orden en que una persona que no conoce el gimnasio los busca.</li>
+<li><b>Horarios que cambian.</b> Los sábados dependen de las prácticas de la ENADE: un aviso fijo y destacado lo dice debajo del encabezado, y la grilla semanal resalta el día de hoy.</li>
+<li><b>¿Está abierto ahora?</b> Un indicador calculado con la hora de Montevideo, correcto aunque la persona entre desde otro país, y entiende el corte del mediodía (cierra de 14 a 16).</li>
+<li><b>Consultar sin vueltas.</b> Botón de llamada fijo en el celular, y el mapa y el Instagram a un toque.</li>
+</ul>
+<div class="tg"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Intl API</span><span>Mobile first</span><span>Accesibilidad</span><span>Netlify</span></div>
+<div class="lk"><a class="btn p" href="https://centrofitnesssayago.netlify.app/" target="_blank" rel="noopener">Ver la propuesta</a></div>
+<small class="note">Es una propuesta que todavía no fue aprobada por el gimnasio: avisa que no es el sitio oficial, no aparece en Google y los horarios salen de su Instagram.</small>
+</div>
+<div class="case-demo">
+<div class="sim" id="sim-fitness" role="group" aria-label="Simulación del indicador Abierto ahora de Centro Fitness Sayago"></div>
+<div class="kpis"><div><b>17 KB</b><span>de HTML, sin frameworks</span></div><div><b>3</b><span>actividades con su horario</span></div><div><b>1 toque</b><span>para llamar o abrir el mapa</span></div></div>
+</div>
+</article>
+<article class="case">
+<div class="case-txt">
+<h3>Nuevo Cantón</h3>
+<p class="case-sub">Landing para una pizzería y parrillada con el menú en Instagram</p>
+<p>Nuevo Cantón es una pizzería y parrillada de Sayago con 4,1 ★ y más de 1.100 opiniones en Google. Su menú del día y su carta se publican en Instagram. Armé una propuesta de landing que junta el menú del día, la carta completa, el delivery, el horario y la ubicación en una página pensada para el celular. Es otra propuesta de mi servicio de webs para negocios de Sayago.</p>
+<p class="arch" aria-label="De dónde viene la información y a dónde lleva"><span>Instagram<small>menú y precios</small></span><i aria-hidden="true">&rarr;</i><span>Landing<small>HTML, CSS y JS</small></span><i aria-hidden="true">&rarr;</i><span>Llamar<small>delivery en un toque</small></span><span class="sep">+</span><span>Netlify<small>sitio estático</small></span></p>
+<h4>Problemas que resolví</h4>
+<ul class="ps">
+<li><b>El menú vive en Instagram.</b> El menú del día va arriba de todo y la carta completa se organiza en seis pestañas (pizzería, parrilla, minutas y chivitos, pastas, hamburguesas, empanadas y más) que se leen bien en el celular y también se manejan con las flechas del teclado.</li>
+<li><b>Pedir delivery.</b> Un botón de llamada fijo en el celular lleva al delivery en un toque.</li>
+<li><b>Un horario que no es de 9 a 6.</b> Abre hasta la 01:00, cierra los lunes y la parrilla tiene horario partido. El indicador «Abierto ahora» lo calcula con la hora de Montevideo, también pasada la medianoche, y la parrilla aparece aparte.</li>
+<li><b>Opciones para todos.</b> Las opciones veggie, sin gluten y la merienda tienen su propio bloque, para quien busca algo distinto de la parrilla.</li>
+</ul>
+<div class="tg"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Intl API</span><span>ARIA</span><span>Mobile first</span><span>Netlify</span></div>
+<div class="lk"><a class="btn p" href="https://propuestancanton.netlify.app/" target="_blank" rel="noopener">Ver la propuesta</a></div>
+<small class="note">Es una propuesta que todavía no fue aprobada por el local: avisa que no es el sitio oficial, no aparece en Google y los precios salen del menú que el local publicó en Instagram en junio de 2026.</small>
+</div>
+<div class="case-demo">
+<div class="sim" id="sim-canton" role="group" aria-label="Simulación del indicador Abierto ahora de Nuevo Cantón"></div>
+<div class="kpis"><div><b>22 KB</b><span>de HTML, sin frameworks</span></div><div><b>6</b><span>categorías de la carta en pestañas</span></div><div><b>1 toque</b><span>para pedir delivery</span></div></div>
 </div>
 </article>
 <div class="projects">
